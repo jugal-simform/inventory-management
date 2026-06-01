@@ -5,6 +5,7 @@ import { CategoryProvider } from "@/features/categories/context/CategoryContext"
 import { ProductProvider } from "@/features/products/context/ProductContext"
 import { SupplierProvider } from "@/features/suppliers/context/SupplierContext"
 import { TransactionProvider } from "@/features/transactions/context/TransactionContext"
+import { TooltipProvider } from "@/components/ui/tooltip"
 
 interface AppProvidersProps {
   children: ReactNode
@@ -12,14 +13,16 @@ interface AppProvidersProps {
 
 export function AppProviders({ children }: AppProvidersProps) {
   return (
-    <CategoryProvider>
-      <SupplierProvider>
-        <ProductProvider>
-          <AlertProvider>
-            <TransactionProvider>{children}</TransactionProvider>
-          </AlertProvider>
-        </ProductProvider>
-      </SupplierProvider>
-    </CategoryProvider>
+    <TooltipProvider>
+      <CategoryProvider>
+        <SupplierProvider>
+          <ProductProvider>
+            <AlertProvider>
+              <TransactionProvider>{children}</TransactionProvider>
+            </AlertProvider>
+          </ProductProvider>
+        </SupplierProvider>
+      </CategoryProvider>
+    </TooltipProvider>
   )
 }
