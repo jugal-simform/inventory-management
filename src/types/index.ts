@@ -12,6 +12,10 @@ export interface Dimensions {
 export interface Category {
   id: string
   name: string
+  description?: string
+  color?: string
+  parentId?: string | null
+  productCount?: number
   createdAt: string
   updatedAt: string
 }

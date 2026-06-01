@@ -1,15 +1,16 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
+import { useForm, type UseFormReturn } from "react-hook-form"
 import { useSearchParams } from "react-router-dom"
 
 import { wizardFormSchema, type WizardFormValues } from "@/features/wizard/validation"
 
-export function useWizardForm() {
+export function useWizardForm(): UseFormReturn<WizardFormValues> {
   const [searchParams] = useSearchParams()
   const prefilledCategoryId = searchParams.get("categoryId") ?? ""
 
-  return useForm<WizardFormValues>({
-    resolver: zodResolver(wizardFormSchema),
+  return useForm<WizardFormValues, unknown, WizardFormValues>({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: zodResolver(wizardFormSchema) as any,
     defaultValues: {
       name: "",
       description: "",
@@ -32,5 +33,5 @@ export function useWizardForm() {
       dimensionHeight: undefined,
     },
     mode: "onTouched",
-  })
+  }) as UseFormReturn<WizardFormValues>
 }
