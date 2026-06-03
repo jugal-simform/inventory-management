@@ -1,10 +1,19 @@
+import { useEffect } from "react"
 import { Link } from "react-router-dom"
 
 import { Button } from "@/components/ui/button"
+import { useBreadcrumb } from "@/components/breadcrumb-context"
 import { useProducts } from "@/features/products/context/ProductContext"
 
 export function ProductsPage() {
   const { products } = useProducts()
+  const { setSegments, setIsDirty } = useBreadcrumb()
+
+  useEffect(() => {
+    setSegments([{ label: "Products", path: "/products" }])
+    setIsDirty(false)
+    return () => setSegments([])
+  }, [setSegments, setIsDirty])
 
   return (
     <main className="mx-auto w-full max-w-5xl p-4 md:p-6">

@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { toast } from "sonner"
 
+import { useBreadcrumb } from "@/components/breadcrumb-context"
 import { useAlertEngine } from "@/features/alerts/hooks/useAlertEngine"
 import { useCategories } from "@/features/categories/context/CategoryContext"
 import { useProducts } from "@/features/products/context/ProductContext"
@@ -14,6 +15,13 @@ import { WizardShell } from "@/features/wizard/components/WizardShell"
 import { useWizardForm } from "@/features/wizard/hooks/useWizardForm"
 import { useWizardNavigation } from "@/features/wizard/hooks/useWizardNavigation"
 import type { Product } from "@/types"
+
+const STEP_NAMES = ["Product Info", "Pricing", "Stock Details"]
+
+const generateSku = (sku: string) => {
+  const trimmedSku = sku.trim()
+  return trimmedSku || `SKU-${Date.now()}`
+}
 
 export function AddProductWizard() {
   const navigate = useNavigate()
@@ -28,6 +36,8 @@ export function AddProductWizard() {
     goToStep,
   } = useWizardNavigation(form)
 
+  const { setSegments, setIsDirty } = useBreadcrumb()
+
   const { categories } = useCategories()
   const { activeSuppliers } = useSuppliers()
   const { products, addProduct } = useProducts()
@@ -36,6 +46,25 @@ export function AddProductWizard() {
 
   const disableNext =
     step === 1 && (categories.length === 0 || activeSuppliers.length === 0)
+
+  useEffect(() => {
+    setSegments([
+      { label: "Products", path: "/products" },
+      { label: "Add Product" },
+      { label: `Step ${step}: ${STEP_NAMES[step - 1]}` },
+    ])
+  }, [step, setSegments])
+
+  useEffect(() => {
+    setIsDirty(form.formState.isDirty)
+  }, [form.formState.isDirty, setIsDirty])
+
+  useEffect(() => {
+    return () => {
+      setSegments([])
+      setIsDirty(false)
+    }
+  }, [setSegments, setIsDirty])
 
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
@@ -50,7 +79,7 @@ export function AddProductWizard() {
 
   useEffect(() => {
     const focusFirstField = () => {
-      const currentStep = document.querySelector(`[data-step=\"${step}\"]`)
+      const currentStep = document.querySelector(`[data-step=\\"${step}\\"]`)
       if (!currentStep) {
         return
       }
@@ -66,7 +95,7 @@ export function AddProductWizard() {
   }, [step])
 
   const onSubmit = form.handleSubmit((values) => {
-    const generatedSku = values.sku.trim() || `SKU-${Date.now()}`
+    const generatedSku = generateSku(values.sku)
 
     const isDuplicateSku = products.some(
       (product) => product.sku.toLowerCase() === generatedSku.toLowerCase()

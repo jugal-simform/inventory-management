@@ -6,6 +6,7 @@ import { ProductProvider } from "@/features/products/context/ProductContext"
 import { SupplierProvider } from "@/features/suppliers/context/SupplierContext"
 import { TransactionProvider } from "@/features/transactions/context/TransactionContext"
 import { TooltipProvider } from "@/components/ui/tooltip"
+import { BreadcrumbProvider } from "@/components/breadcrumb-context"
 
 interface AppProvidersProps {
   children: ReactNode
@@ -14,15 +15,17 @@ interface AppProvidersProps {
 export function AppProviders({ children }: AppProvidersProps) {
   return (
     <TooltipProvider>
-      <CategoryProvider>
-        <SupplierProvider>
-          <ProductProvider>
-            <AlertProvider>
-              <TransactionProvider>{children}</TransactionProvider>
-            </AlertProvider>
-          </ProductProvider>
-        </SupplierProvider>
-      </CategoryProvider>
+      <BreadcrumbProvider>
+        <CategoryProvider>
+          <SupplierProvider>
+            <ProductProvider>
+              <AlertProvider>
+                <TransactionProvider>{children}</TransactionProvider>
+              </AlertProvider>
+            </ProductProvider>
+          </SupplierProvider>
+        </CategoryProvider>
+      </BreadcrumbProvider>
     </TooltipProvider>
   )
 }
