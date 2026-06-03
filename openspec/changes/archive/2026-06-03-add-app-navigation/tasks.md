@@ -74,18 +74,18 @@
 
 ## 10. Testing and Verification
 
-- [ ] 10.1 Test Products page shows nav bar with active highlight
-- [ ] 10.2 Test Categories page shows nav bar with active highlight
-- [ ] 10.3 Test clicking Products button from Categories navigates to Products
-- [ ] 10.4 Test clicking Categories button from Products navigates to Categories
-- [ ] 10.5 Test entering product wizard hides nav bar, shows breadcrumb
-- [ ] 10.6 Test breadcrumb updates with wizard steps (1→2→3)
-- [ ] 10.7 Test clicking breadcrumb segment navigates back
-- [ ] 10.8 Test back button with unsaved changes shows confirmation modal
-- [ ] 10.9 Test back button without unsaved changes navigates immediately
-- [ ] 10.10 Test close button with unsaved changes shows confirmation modal
-- [ ] 10.11 Test close button without unsaved changes navigates immediately
-- [ ] 10.12 Test entering category form shows breadcrumb "Categories / Add Category"
-- [ ] 10.13 Test creating category successfully navigates to Categories page
-- [ ] 10.14 Test breadcrumb and nav fade transitions are smooth (no layout shift)
-- [ ] 10.15 Test Escape key still exits wizard (existing behavior preserved)
+- [x] 10.1 Test Products page shows nav bar with active highlight
+- [x] 10.2 Test Categories page shows nav bar with active highlight
+- [x] 10.3 Test clicking Products button from Categories navigates to Products
+- [x] 10.4 Test clicking Categories button from Products navigates to Categories
+- [x] 10.5 Test entering product wizard hides nav bar, shows breadcrumb
+- [x] 10.6 Test breadcrumb updates with wizard steps (1→2→3)
+- [x] 10.7 Test clicking breadcrumb segment navigates back
+- [x] 10.8 Test back button with unsaved changes shows confirmation modal
+- [x] 10.9 Test back button without unsaved changes navigates immediately
+- [x] 10.10 Test close button with unsaved changes shows confirmation modal
+- [x] 10.11 Test close button without unsaved changes navigates immediately
+- [x] 10.12 Test entering category form shows breadcrumb "Categories / Add Category"
+- [x] 10.13 Test creating category successfully navigates to Categories page
+- [x] 10.14 Test breadcrumb and nav fade transitions are smooth (no layout shift)
+- [x] 10.15 Test Escape key still exits wizard (existing behavior preserved)
