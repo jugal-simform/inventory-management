@@ -6,6 +6,7 @@ import { ProductsPage } from "@/features/products/components/ProductsPage"
 import { AddProductWizard } from "@/features/wizard/AddProductWizard"
 import { CategoryManagement } from "@/features/categories/pages/CategoryManagement"
 import { CategoryFormPage } from "@/features/categories/pages/CategoryFormPage"
+import { AnalyticsPage } from "@/features/analytics/pages/AnalyticsPage"
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
       {
         path: "/categories",
         element: <CategoryManagement />,
+      },
+      {
+        path: "/analytics",
+        element: <AnalyticsPage />,
       },
     ],
   },

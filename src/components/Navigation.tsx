@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom"
+import { TrendingUp } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 export function Navigation() {
@@ -31,6 +32,20 @@ export function Navigation() {
           }
         >
           Categories
+        </NavLink>
+        <NavLink
+          to="/analytics"
+          className={({ isActive }) =>
+            cn(
+              "rounded-md px-3 py-1.5 text-sm transition-colors flex items-center gap-2",
+              isActive
+                ? "bg-primary/10 font-medium text-primary"
+                : "text-muted-foreground hover:bg-muted hover:text-foreground"
+            )
+          }
+        >
+          <TrendingUp className="h-4 w-4" />
+          Analytics
         </NavLink>
       </nav>
     </header>
