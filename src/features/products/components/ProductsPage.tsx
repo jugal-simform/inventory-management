@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { useBreadcrumb } from "@/components/breadcrumb-context"
 import { useProducts } from "@/features/products/context/ProductContext"
+import { ProductTable } from "./ProductTable"
 
 export function ProductsPage() {
   const { products } = useProducts()
@@ -34,32 +35,7 @@ export function ProductsPage() {
           No products yet. Use Add Product to create your first inventory item.
         </div>
       ) : (
-        <div className="overflow-hidden rounded-lg border border-border">
-          <table className="w-full text-left text-sm">
-            <thead className="bg-muted/50">
-              <tr>
-                <th className="px-3 py-2 font-medium">Name</th>
-                <th className="px-3 py-2 font-medium">SKU</th>
-                <th className="px-3 py-2 font-medium">Quantity</th>
-              </tr>
-            </thead>
-            <tbody>
-              {products.map((product) => (
-                <tr key={product.id} className="border-t border-border">
-                  <td className="px-3 py-2">
-                    <span className="block max-w-xs truncate" title={product.name}>
-                      {product.name}
-                    </span>
-                  </td>
-                  <td className="px-3 py-2">{product.sku}</td>
-                  <td className="px-3 py-2">
-                    {product.quantity} {product.unit}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <ProductTable products={products} />
       )}
     </main>
   )
